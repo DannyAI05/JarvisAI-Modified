@@ -1,0 +1,23 @@
+#Introduction
+JarvisAI is a desktop AI assistant I built using Python and Tkinter.
+  It features voice interaction, speech synthesis, weather updates, system monitoring, note-taking and customizable interface.
+   #System Requirements
+    Windows 10 or newer
+    Microphone (For voice commands)
+    Internet connection (A stable one if required)
+    #Installation Guide
+    Click the link provided to enter the download page.
+    Click the download button to get the Jarvis_Setup.exe.
+    Begin the installation process to install the app.
+    If there is security issues ,temporarily turn of your Defender app until after installation.
+    Launch JarvisAI.
+    #Features
+    Speak button: Receives user speech commands / input.
+      Send Button: Sends text input to Jarivs.
+        Voice Assistant: Allows user interaction with the system using spoken commands.
+          Chat Interface: A GUI that enables text-based communication between the user and system.
+          Wake-Word Detection: A listening mechanism that continuously monitors audio input for a specific word (like "Jarvis").
+            #Troubleshooting
+            No voice input- Check microphone permissions.
+            App won't start - Run as administrator.
+            Speech not working- Verify internet connection.
