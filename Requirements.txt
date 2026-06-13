@@ -1,0 +1,7 @@
+SpeechRecognition
+edge-tts
+playsound
+psutil
+Pillow
+PyAudio
+pip install -r requirements.txt
