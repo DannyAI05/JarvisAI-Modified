@@ -1,0 +1,41 @@
+#System Architecture
+User Input
+↓
+Graphical User Interface
+↓
+Command Processing Engine
+↓
+Response Generation Module
+↓
+Text-to-Speech Engine
+↓
+User Output
+  #Modules
+  #GUI Module
+  The GUI Module provides the visual interface through which users interact with JarvisAI.
+  Built using Tkinter, it includes the chat area, input field, control buttons, system monitor, weather panel, clock, and status indicators.
+    It enables both text-based interaction and easy access to the assistant's features.
+    #Voice Recognition Module
+    The Voice Recognition Module allows JarvisAI to understand spoken commands.
+    Using the SpeechRecognition library and Google Speech Recognition API.
+    It captures audio from the microphone, converts speech into text, and forwards the recognized command to the assistant for processing.
+    #Text-To-Speech(TTS) Module
+      The Text-to-Speech Module enables JarvisAI to communicate verbally with the user.
+      It uses Edge TTS to convert generated text responses into natural-sounding speech and plays the audio back to the user, creating a more interactive and human-like experience.
+      #Command Handler Module
+      The Command Handler Module acts as the brain of JarvisAI. 
+      It receives user input from either the chat interface or voice recognition module, analyzes the command, determines the appropriate action, and generates a response. 
+        It handles tasks such as greetings, weather queries, system information, note-taking, calculations, web searches, application launching, and memory-based interactions.
+          #Libraries 
+          #Tkinter
+          Used to develop graphical user interface.
+          #SpeechRecognition
+          Used to capture and process voice input.
+          #Edge-TTS
+          Used for generating speech output.
+          #Pillow
+          Used for image handling.
+          #WebBrowser
+          Used for opening websites and online resources.
+          #PyInstaller
+          Used to package the application into a standalone executable file.
