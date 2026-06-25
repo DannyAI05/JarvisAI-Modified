@@ -17,6 +17,20 @@ from tkinter import messagebox
 from  PIL import Image , ImageTk
 import threading
 import requests
+import shutil
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+startup_folder = os.path.join(
+    os.getenv("APPDATA"),
+    r"Microsoft\Windows\Start Menu\Programs\Startup"
+)
 
 def show_about():
 
@@ -387,39 +401,48 @@ def voice_input():
 
     chat_area.see(tk.END)
 
-wake_word = "jarvis"
+wake_word = "Hey jarvis"
 
 def listen_for_wake_word():
     recognizer = sr.Recognizer()
-    mic = sr.Microphone()
 
-    with mic as source:
-        print("Listening for wake word...")
+    with sr.Microphone() as source:
+        recognizer.adjust_for_ambient_noise(source)
 
         while True:
-            audio = recognizer.listen(source)
+            print("Listening for wake word...")
 
             try:
+                audio = recognizer.listen(
+                    source,
+                    timeout=5,
+                    phrase_time_limit=5
+                )
+
                 text = recognizer.recognize_google(audio).lower()
                 print("Heard:", text)
 
-                if wake_word in text:
+                if wake_word.lower() in text:
                     print("Wake word detected!")
                     return True
 
             except sr.UnknownValueError:
-                pass
+                continue
+            except sr.WaitTimeoutError:
+                continue
             except sr.RequestError:
                 print("Speech service error")
+                continue
 
+def wake_listener():
+    if listen_for_wake_word():
+        root.after(0, root.deiconify)
 
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
+threading.Thread(
+    target=wake_listener,
+    daemon=True
+).start()
 
-    return os.path.join(base_path, relative_path)
 
 def play_startup_sound():
     playsound(
@@ -553,7 +576,8 @@ root.configure(bg="#1e1e1e")
 root.title("JarvisAI")
 root.geometry("1000x1000")
 
-root.iconbitmap("jarvis_icon.ico")
+if os.path.exists("jarvis_icon.ico"):
+    root.iconbitmap("jarvis_icon.ico")
 
 image = Image.open(
     resource_path("jarvis_logo.png")
@@ -1087,6 +1111,7 @@ def animate_rain():
 
     root.after(50, animate_rain)
 
+
 update_system_monitor()
 
 radar()
@@ -1098,5 +1123,17 @@ boot_sequence()
 refresh_weather()
 
 update_clock()
+
+root.after(
+    1000,
+    lambda: speak("Hey  Daniela. Jarvis is now online.")
+)
+
+root.withdraw()
+
+threading.Thread(
+    target=wake_listener,
+    daemon=True
+).start()
 
 root.mainloop()
