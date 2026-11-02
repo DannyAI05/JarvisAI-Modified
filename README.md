@@ -1,7 +1,6 @@
 # JarvisAI-Modified
 A smart voice and GUI assistant built in Python.
 Find my .exe file in https://1drv.ms/u/c/d24bee69bc0e51ef/IQAhdV0xIV0CS68mKR1DlXKoAYDuxIj_DLCg65jNOp4ekow?e=X3dIF8.
-<img width="720" height="1280" alt="image" src="https://github.com/user-attachments/assets/60ae3685-8f9b-433e-9d5a-c72468e64adc" />
 
 ## Features
 
